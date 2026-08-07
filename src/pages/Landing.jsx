@@ -42,6 +42,25 @@ export default function Landing() {
             </div>
           </div>
 
+          <Card className="space-y-4">
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 rounded-2xl bg-black text-white flex items-center justify-center font-bold dark:bg-white dark:text-black">
+                AB
+              </div>
+
+              <div>
+                <h3 className="font-semibold">Continue with ABTalks</h3>
+                <p className="text-sm text-zinc-500 dark:text-zinc-400">
+                  Sync your 60-day challenge progress
+                </p>
+              </div>
+            </div>
+
+            <AppButton onClick={() => navigate('/dashboard')}>
+              Continue with ABTalks
+            </AppButton>
+          </Card>
+
           <AppButton onClick={() => navigate('/dashboard')}>
             Start the challenge
           </AppButton>
