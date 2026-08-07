@@ -69,10 +69,11 @@ npm run dev
 
 ---
 
-## 👥 Team
+## 👥 Team Name : Tech Stars
 
 - Asima Firdous
-- Team members joining soon
+- D Niharika
+- ANVSLD Sri Harshitha 
 
 ---
 
