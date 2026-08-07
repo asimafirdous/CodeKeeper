@@ -16,11 +16,11 @@ export default function Dashboard() {
   const navigate = useNavigate()
 
   return (
-    <div className="min-h-screen max-w-[390px] mx-auto px-4 py-6 bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-white relative overflow-hidden pb-28">
-      <div className="glow w-40 h-40 bg-orange-500 top-10 -right-10" />
+    <div className="min-h-screen max-w-[390px] mx-auto px-4 py-6 bg-white dark:bg-[#0B0B0F] text-zinc-900 dark:text-white relative overflow-hidden pb-28">
+      <div className="glow-orange top-10 -right-10" />
+      <div className="glow-pink bottom-24 -left-10" />
 
       <div className="relative z-10 space-y-5">
-        {/* Header */}
         <div className="flex items-center justify-between">
           <div>
             <p className="text-zinc-500 dark:text-zinc-400 text-sm">
@@ -32,7 +32,6 @@ export default function Dashboard() {
           <ThemeToggle />
         </div>
 
-        {/* Streak Card */}
         <Card className="space-y-4">
           <div className="flex items-center justify-between">
             <div>
@@ -66,10 +65,8 @@ export default function Dashboard() {
           </div>
         </Card>
 
-        {/* Tokens */}
         <TokenCard tokens={student.tokens} />
 
-        {/* Recruiter Visibility */}
         <Card className="space-y-4">
           <div className="flex items-center justify-between">
             <div>
@@ -94,26 +91,25 @@ export default function Dashboard() {
           <ProgressBar value={student.visibilityScore} />
 
           <div className="grid grid-cols-3 gap-3 text-center text-sm">
-            <div className="rounded-2xl bg-zinc-100 dark:bg-zinc-800 p-3">
+            <div className="rounded-2xl bg-zinc-100 dark:bg-[#1A1A22] p-3">
               <p className="text-zinc-500 dark:text-zinc-400 text-xs">Streak</p>
               <p className="font-bold">40</p>
             </div>
-            <div className="rounded-2xl bg-zinc-100 dark:bg-zinc-800 p-3">
+            <div className="rounded-2xl bg-zinc-100 dark:bg-[#1A1A22] p-3">
               <p className="text-zinc-500 dark:text-zinc-400 text-xs">GitHub</p>
               <p className="font-bold">22</p>
             </div>
-            <div className="rounded-2xl bg-zinc-100 dark:bg-zinc-800 p-3">
+            <div className="rounded-2xl bg-zinc-100 dark:bg-[#1A1A22] p-3">
               <p className="text-zinc-500 dark:text-zinc-400 text-xs">LinkedIn</p>
               <p className="font-bold">12</p>
             </div>
           </div>
         </Card>
 
-        {/* Today Task */}
         <Card className="space-y-4">
           <div className="flex items-center justify-between">
             <h2 className="font-semibold">Today’s task</h2>
-            <span className="text-xs px-2 py-1 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300">
+            <span className="text-xs px-2 py-1 rounded-full bg-zinc-100 dark:bg-[#1A1A22] text-zinc-600 dark:text-zinc-300">
               {todayTask.duration}
             </span>
           </div>
@@ -141,7 +137,6 @@ export default function Dashboard() {
           </AppButton>
         </Card>
 
-        {/* Heatmap */}
         <Card className="space-y-4">
           <div className="flex items-center justify-between">
             <div>
@@ -159,10 +154,8 @@ export default function Dashboard() {
           <Heatmap data={heatmap} />
         </Card>
 
-        {/* Restore Streak */}
         <RestoreStreakCard />
 
-        {/* Achievement */}
         <Card className="space-y-3">
           <div className="flex items-center gap-2">
             <Trophy className="w-5 h-5 text-yellow-500" />

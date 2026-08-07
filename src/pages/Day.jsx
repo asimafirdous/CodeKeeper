@@ -10,11 +10,11 @@ import { todayTask } from '../data/mockData'
 
 export default function Day() {
   return (
-    <div className="min-h-screen max-w-[390px] mx-auto px-4 py-6 bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-white relative overflow-hidden pb-28">
-      <div className="glow w-40 h-40 bg-orange-500 top-10 -right-10" />
+    <div className="min-h-screen max-w-[390px] mx-auto px-4 py-6 bg-white dark:bg-[#0B0B0F] text-zinc-900 dark:text-white relative overflow-hidden pb-28">
+      <div className="glow-orange top-10 -right-10" />
+      <div className="glow-pink bottom-24 -left-10" />
 
       <div className="relative z-10 space-y-5">
-        {/* Header */}
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <BackButton />
@@ -30,10 +30,9 @@ export default function Day() {
           <ThemeToggle />
         </div>
 
-        {/* Task Hero */}
         <Card className="space-y-4">
           <div className="flex items-center justify-between text-sm">
-            <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300">
+            <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-100 dark:bg-[#1A1A22] text-zinc-600 dark:text-zinc-300">
               <Clock className="w-4 h-4" />
               {todayTask.duration}
             </div>
@@ -54,7 +53,7 @@ export default function Day() {
             </p>
           </div>
 
-          <div className="flex items-center justify-between rounded-2xl bg-zinc-100 dark:bg-zinc-800 p-4">
+          <div className="flex items-center justify-between rounded-2xl bg-zinc-100 dark:bg-[#1A1A22] p-4">
             <div>
               <p className="text-sm text-zinc-500 dark:text-zinc-400">
                 Reward
@@ -68,7 +67,6 @@ export default function Day() {
           </div>
         </Card>
 
-        {/* Requirements */}
         <Card className="space-y-4">
           <h3 className="font-semibold text-lg">Requirements</h3>
 
@@ -90,7 +88,6 @@ export default function Day() {
           </div>
         </Card>
 
-        {/* Submission */}
         <Card className="space-y-4">
           <div>
             <h3 className="font-semibold text-lg">Submit proof of work</h3>
@@ -124,40 +121,6 @@ export default function Day() {
           <p className="text-xs text-center text-zinc-500 dark:text-zinc-400 leading-5">
             Your streak and CodeTokens update instantly after submission.
           </p>
-        </Card>
-
-        {/* Late Submission / Restore */}
-        <Card className="space-y-3 border-orange-200 dark:border-orange-900/40">
-          <div className="flex items-center gap-2">
-            <span className="text-xl">🔥</span>
-            <div>
-              <h3 className="font-semibold">Missed a day?</h3>
-              <p className="text-sm text-zinc-500 dark:text-zinc-400">
-                Restore available for 24 hours
-              </p>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-3 gap-3 text-center text-sm">
-            <div className="rounded-2xl bg-zinc-100 dark:bg-zinc-800 p-3">
-              <p className="text-zinc-500 dark:text-zinc-400 text-xs">
-                Credit
-              </p>
-              <p className="font-bold">1</p>
-            </div>
-            <div className="rounded-2xl bg-zinc-100 dark:bg-zinc-800 p-3">
-              <p className="text-zinc-500 dark:text-zinc-400 text-xs">
-                Tokens
-              </p>
-              <p className="font-bold">200</p>
-            </div>
-            <div className="rounded-2xl bg-zinc-100 dark:bg-zinc-800 p-3">
-              <p className="text-zinc-500 dark:text-zinc-400 text-xs">
-                Quiz
-              </p>
-              <p className="font-bold">20m</p>
-            </div>
-          </div>
         </Card>
       </div>
 

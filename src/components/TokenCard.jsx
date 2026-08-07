@@ -1,6 +1,6 @@
 export default function TokenCard({ tokens }) {
   return (
-    <div className="bg-gradient-to-br from-yellow-400 to-orange-500 rounded-3xl p-5 text-black shadow-lg">
+    <div className="bg-gradient-to-br from-amber-400 via-orange-400 to-pink-500 rounded-3xl p-5 text-black shadow-lg shadow-orange-500/20">
       <div className="flex items-center justify-between">
         <div>
           <p className="text-sm font-medium opacity-80">CodeTokens</p>
@@ -12,8 +12,8 @@ export default function TokenCard({ tokens }) {
         </div>
       </div>
 
-      <p className="text-sm mt-3 opacity-80">
-        Earn tokens by completing days and posting proof of work.
+      <p className="text-sm mt-3 opacity-80 leading-6">
+        Earn tokens from commits, posts, and streak milestones.
       </p>
     </div>
   )

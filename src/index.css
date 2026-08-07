@@ -4,8 +4,12 @@
   color-scheme: light dark;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 html {
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 body {
@@ -16,23 +20,38 @@ body {
 }
 
 html.light body {
-  background: #fafafa;
+  background: #ffffff;
   color: #111827;
 }
 
 html.dark body {
-  background: #09090b;
-  color: white;
+  background: #0b0b0f;
+  color: #ffffff;
 }
 
 #root {
   min-height: 100vh;
 }
 
-.glow {
+/* Subtle glows only */
+.glow-orange {
   position: absolute;
+  width: 160px;
+  height: 160px;
   border-radius: 9999px;
+  background: #f97316;
   filter: blur(80px);
-  opacity: 0.25;
+  opacity: 0.08;
+  pointer-events: none;
+}
+
+.glow-pink {
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  border-radius: 9999px;
+  background: #ec4899;
+  filter: blur(80px);
+  opacity: 0.06;
   pointer-events: none;
 }

@@ -11,7 +11,7 @@ export default function ThemeToggle() {
   ]
 
   return (
-    <div className="flex items-center gap-1 p-1 rounded-2xl bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700">
+    <div className="flex items-center gap-1 p-1 rounded-2xl bg-zinc-100 dark:bg-[#1A1A22] border border-zinc-200 dark:border-zinc-800">
       {options.map((opt) => {
         const Icon = opt.icon
         const active = mode === opt.value
@@ -22,7 +22,7 @@ export default function ThemeToggle() {
             onClick={() => setMode(opt.value)}
             className={`w-9 h-9 rounded-xl flex items-center justify-center transition-all duration-200 ${
               active
-                ? 'bg-white dark:bg-zinc-900 shadow text-zinc-900 dark:text-white'
+                ? 'bg-white dark:bg-[#121218] shadow-sm text-zinc-900 dark:text-white border border-zinc-200 dark:border-zinc-700'
                 : 'text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white'
             }`}
           >
