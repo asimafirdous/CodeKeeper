@@ -1,5 +1,8 @@
 import { Flame, Trophy } from 'lucide-react'
 import { student, todayTask } from '../data/mockData'
+import BottomNav from '../components/BottomNav'
+import Card from '../components/Card'
+import ProgressBar from '../components/ProgressBar'
 
 export default function Dashboard() {
   return (
@@ -27,11 +30,9 @@ export default function Dashboard() {
           <div>
             <div className="flex justify-between text-sm mb-2">
               <span className="text-zinc-400">Challenge progress</span>
-              <span>20%</span>
+              <span> {student.completedDays}/{student.totalDays} </span>
             </div>
-            <div className="h-2 rounded-full bg-zinc-800 overflow-hidden">
-              <div className="h-full w-1/5 bg-orange-400 rounded-full" />
-            </div>
+            <ProgressBar value={20} />
           </div>
 
           <div className="flex items-center justify-between text-sm">
@@ -72,6 +73,15 @@ export default function Dashboard() {
             Consistency Rookie — complete 10 days without missing.
           </p>
         </div>
+        <Card>
+          <div className="flex items-center gap-2 mb-3">
+            <Trophy className="w-5 h-5 text-yellow-400" />
+            <h2 className="font-semibold">Achievement unlocked</h2>
+          </div>
+          <p className="text-sm text-zinc-400">
+            Consistency Rookie — complete 10 days without missing.
+          </p> </Card>
+        <BottomNav />
       </div>
     </div>
   )
