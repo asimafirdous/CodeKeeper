@@ -1,15 +1,22 @@
 import BottomNav from '../components/BottomNav'
 import Card from '../components/Card'
+import ThemeToggle from '../components/ThemeToggle'
+import AppButton from '../components/AppButton'
+import { useNavigate } from 'react-router-dom'
 
 export default function Landing() {
+  const navigate = useNavigate()
   return (
     <div className="min-h-screen max-w-[390px] mx-auto px-4 py-6 bg-zinc-950 text-white relative overflow-hidden pb-28">
       <div className="glow w-40 h-40 bg-orange-500 top-10 -right-10" />
       <div className="glow w-32 h-32 bg-pink-500 bottom-32 -left-10" />
 
       <div className="relative z-10 space-y-6">
-        <div className="inline-flex items-center gap-2 bg-zinc-900/80 border border-zinc-800 px-3 py-1 rounded-full text-sm">
+        <div className="flex items-center justify-between">
+          <div className="inline-flex items-center gap-2 bg-white/80 dark:bg-zinc-900/80 border border-zinc-200 dark:border-zinc-800 px-3 py-1 rounded-full text-sm">
+          </div>
           🔥 2,400+ active students
+          <ThemeToggle />
         </div>
 
         <div className="space-y-3">
@@ -35,9 +42,9 @@ export default function Landing() {
             </div>
           </div>
 
-          <button className="w-full h-12 rounded-2xl bg-white text-black font-semibold active:scale-[0.98] transition-transform">
+          <AppButton onClick={() => navigate('/dashboard')}>
             Start the challenge
-          </button>
+          </AppButton>
         </Card>
 
         <Card className="space-y-3">
@@ -60,7 +67,6 @@ export default function Landing() {
           </div>
         </Card>
       </div>
-
       <BottomNav />
     </div>
   )

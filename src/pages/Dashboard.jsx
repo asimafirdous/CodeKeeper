@@ -3,6 +3,7 @@ import { student, todayTask } from '../data/mockData'
 import BottomNav from '../components/BottomNav'
 import Card from '../components/Card'
 import ProgressBar from '../components/ProgressBar'
+import AppButton from '../components/AppButton'
 
 export default function Dashboard() {
   return (
@@ -59,9 +60,7 @@ export default function Dashboard() {
             {todayTask.description}
           </p>
 
-          <button className="w-full h-12 rounded-2xl bg-white text-black font-semibold">
-            Continue Day 12
-          </button>
+          <AppButton> Submit Day 12 </AppButton>
         </div>
 
         <div className="bg-zinc-900 border border-zinc-800 rounded-3xl p-5 space-y-3">
