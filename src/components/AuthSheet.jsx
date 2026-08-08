@@ -13,23 +13,34 @@ export default function AuthSheet({ open, onClose, onSuccess }) {
   if (!open) return null
 
   const sendOtp = () => {
-    if (!email) {
+    if (!name.trim()) {
+      setMessage('Please enter your name')
+      return
+    }
+
+    if (!email.trim()) {
       setMessage('Please enter your email')
       return
     }
 
     const code = Math.floor(100000 + Math.random() * 900000).toString()
     setGeneratedOtp(code)
+    setOtp('')
     setMessage(`Demo OTP: ${code}`)
     setStep('otp')
   }
 
   const verifyOtp = () => {
-    if (otp === generatedOtp) {
+    if (!generatedOtp) {
+      setMessage('Please request an OTP first')
+      return
+    }
+    if (otp.trim() === generatedOtp.trim()) {
       setMessage('Email verified successfully')
       setTimeout(() => {
         onSuccess()
-      }, 500)
+      },
+        600)
     } else {
       setMessage('Invalid OTP')
     }
@@ -64,11 +75,14 @@ export default function AuthSheet({ open, onClose, onSuccess }) {
             </p>
 
             <button
-              onClick={onSuccess}
+              onClick={() => {
+                setMessage('Signed in with Google')
+                setTimeout(() => { onSuccess() }, 400)
+              }}
               className="w-full h-12 rounded-2xl border border-zinc-200 dark:border-zinc-700 flex items-center justify-center gap-3 font-semibold text-zinc-900 dark:text-white hover:bg-zinc-50 dark:hover:bg-[#1A1A22] transition-colors"
             >
               <svg width="18" height="18" viewBox="0 0 48 48">
-                <path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.3 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3 0 5.7 1.1 7.8 3l5.7-5.7C34.1 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/>
+                <path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.3 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3 0 5.7 1.1 7.8 3l5.7-5.7C34.1 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z" />
               </svg>
               Continue with Google
             </button>
@@ -146,8 +160,9 @@ export default function AuthSheet({ open, onClose, onSuccess }) {
             </div>
 
             <input
+              autoFocus
               value={otp}
-              onChange={(e) => setOtp(e.target.value)}
+              onChange={(e) => setOtp(e.target.value.replace(/\D/g, ''))}
               placeholder="123456"
               maxLength={6}
               className="w-full h-12 text-center tracking-[0.4em] text-lg rounded-2xl bg-zinc-50 dark:bg-[#1A1A22] border border-zinc-200 dark:border-zinc-800 outline-none focus:border-orange-400"

@@ -98,11 +98,16 @@ export default function Landing() {
       </div>
 
       <BottomNav />
-      <AuthSheet open={authOpen}
-        onClose={() => setAuthOpen(false)} onSuccess={() => {
+      <AuthSheet
+        open={authOpen}
+        onClose={() => setAuthOpen(false)}
+        onSuccess={() => {
           setAuthOpen(false)
           navigate('/dashboard')
         }} />
+      <p className="text-xs text-center text-zinc-500 dark:text-zinc-400">
+        Demo mode: use the OTP shown in the green message above.
+      </p>
     </div>
   )
 }
