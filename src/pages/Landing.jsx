@@ -3,9 +3,12 @@ import Card from '../components/Card'
 import ThemeToggle from '../components/ThemeToggle'
 import AppButton from '../components/AppButton'
 import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
+import AuthSheet from '../components/AuthSheet'
 
 export default function Landing() {
   const navigate = useNavigate()
+  const [authOpen, setAuthOpen] = useState(false)
 
   return (
     <div className="min-h-screen max-w-[390px] mx-auto px-4 py-6 bg-white dark:bg-[#0B0B0F] text-zinc-900 dark:text-white relative overflow-hidden pb-28">
@@ -67,7 +70,7 @@ export default function Landing() {
             </div>
           </div>
 
-          <AppButton onClick={() => navigate('/dashboard')}>
+          <AppButton onClick={() => setAuthOpen(true)}>
             Continue with ABTalks
           </AppButton>
         </Card>
@@ -95,6 +98,11 @@ export default function Landing() {
       </div>
 
       <BottomNav />
+      <AuthSheet open={authOpen}
+        onClose={() => setAuthOpen(false)} onSuccess={() => {
+          setAuthOpen(false)
+          navigate('/dashboard')
+        }} />
     </div>
   )
 }
