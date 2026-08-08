@@ -7,12 +7,37 @@ export default function AuthSheet({ open, onClose, onSuccess }) {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [otp, setOtp] = useState('')
+  const [generatedOtp, setGeneratedOtp] = useState('')
+  const [message, setMessage] = useState('')
 
   if (!open) return null
 
+  const sendOtp = () => {
+    if (!email) {
+      setMessage('Please enter your email')
+      return
+    }
+
+    const code = Math.floor(100000 + Math.random() * 900000).toString()
+    setGeneratedOtp(code)
+    setMessage(`Demo OTP: ${code}`)
+    setStep('otp')
+  }
+
+  const verifyOtp = () => {
+    if (otp === generatedOtp) {
+      setMessage('Email verified successfully')
+      setTimeout(() => {
+        onSuccess()
+      }, 500)
+    } else {
+      setMessage('Invalid OTP')
+    }
+  }
+
   return (
     <div className="fixed inset-0 z-[100] flex items-end justify-center bg-black/40 backdrop-blur-sm">
-      <div className="w-full max-w-[390px] rounded-t-[32px] bg-white dark:bg-[#121218] border border-zinc-200 dark:border-zinc-800 p-5 space-y-5 animate-in slide-in-from-bottom duration-300">
+      <div className="w-full max-w-[390px] rounded-t-[32px] bg-white dark:bg-[#121218] border border-zinc-200 dark:border-zinc-800 p-5 space-y-5">
         <div className="flex items-center justify-between">
           <h2 className="text-lg font-bold text-zinc-900 dark:text-white">
             Continue with ABTalks
@@ -26,13 +51,17 @@ export default function AuthSheet({ open, onClose, onSuccess }) {
           </button>
         </div>
 
+        {message && (
+          <div className="rounded-2xl bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-200 dark:border-emerald-500/20 px-4 py-3 text-sm text-emerald-700 dark:text-emerald-300">
+            {message}
+          </div>
+        )}
+
         {step === 'welcome' && (
           <>
-            <div className="space-y-2">
-              <p className="text-zinc-600 dark:text-zinc-400 text-sm leading-6">
-                Sync your streak, XP, tokens, and challenge progress across devices.
-              </p>
-            </div>
+            <p className="text-zinc-600 dark:text-zinc-400 text-sm leading-6">
+              Sync your streak, XP, tokens, and challenge progress across devices.
+            </p>
 
             <button
               onClick={onSuccess}
@@ -40,9 +69,6 @@ export default function AuthSheet({ open, onClose, onSuccess }) {
             >
               <svg width="18" height="18" viewBox="0 0 48 48">
                 <path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.3 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3 0 5.7 1.1 7.8 3l5.7-5.7C34.1 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/>
-                <path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.5 15.4 18.9 12 24 12c3 0 5.7 1.1 7.8 3l5.7-5.7C34.1 6.1 29.3 4 24 4 16.3 4 9.6 8.3 6.3 14.7z"/>
-                <path fill="#4CAF50" d="M24 44c5.2 0 10-2 13.6-5.3l-6.3-5.3C29.2 34.9 26.7 36 24 36c-5.3 0-9.7-3.3-11.3-8l-6.5 5C9.5 39.6 16.2 44 24 44z"/>
-                <path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-1.1 3.1-3.3 5.5-6 6.9l6.3 5.3C39.7 36.5 44 30.8 44 24c0-1.3-.1-2.4-.4-3.5z"/>
               </svg>
               Continue with Google
             </button>
@@ -73,7 +99,7 @@ export default function AuthSheet({ open, onClose, onSuccess }) {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="Full name"
-                  className="w-full h-12 pl-11 pr-4 rounded-2xl bg-zinc-50 dark:bg-[#1A1A22] border border-zinc-200 dark:border-zinc-800 outline-none focus:border-orange-400 focus:ring-4 focus:ring-orange-400/10 transition-all"
+                  className="w-full h-12 pl-11 pr-4 rounded-2xl bg-zinc-50 dark:bg-[#1A1A22] border border-zinc-200 dark:border-zinc-800 outline-none focus:border-orange-400"
                 />
               </div>
 
@@ -83,18 +109,16 @@ export default function AuthSheet({ open, onClose, onSuccess }) {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Email address"
-                  className="w-full h-12 pl-11 pr-4 rounded-2xl bg-zinc-50 dark:bg-[#1A1A22] border border-zinc-200 dark:border-zinc-800 outline-none focus:border-orange-400 focus:ring-4 focus:ring-orange-400/10 transition-all"
+                  className="w-full h-12 pl-11 pr-4 rounded-2xl bg-zinc-50 dark:bg-[#1A1A22] border border-zinc-200 dark:border-zinc-800 outline-none focus:border-orange-400"
                 />
               </div>
             </div>
 
-            <AppButton onClick={() => setStep('otp')}>
-              Send OTP
-            </AppButton>
+            <AppButton onClick={sendOtp}>Send OTP</AppButton>
 
             <button
               onClick={() => setStep('welcome')}
-              className="w-full text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-white transition-colors"
+              className="w-full text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-white"
             >
               Back
             </button>
@@ -113,11 +137,11 @@ export default function AuthSheet({ open, onClose, onSuccess }) {
               </h3>
 
               <p className="text-sm text-zinc-500 dark:text-zinc-400">
-                We sent a 6-digit code to
+                Enter the 6-digit code sent to
               </p>
 
               <p className="text-sm font-medium text-zinc-900 dark:text-white">
-                {email || 'student@example.com'}
+                {email}
               </p>
             </div>
 
@@ -126,14 +150,15 @@ export default function AuthSheet({ open, onClose, onSuccess }) {
               onChange={(e) => setOtp(e.target.value)}
               placeholder="123456"
               maxLength={6}
-              className="w-full h-12 text-center tracking-[0.4em] text-lg rounded-2xl bg-zinc-50 dark:bg-[#1A1A22] border border-zinc-200 dark:border-zinc-800 outline-none focus:border-orange-400 focus:ring-4 focus:ring-orange-400/10 transition-all"
+              className="w-full h-12 text-center tracking-[0.4em] text-lg rounded-2xl bg-zinc-50 dark:bg-[#1A1A22] border border-zinc-200 dark:border-zinc-800 outline-none focus:border-orange-400"
             />
 
-            <AppButton onClick={onSuccess}>
-              Verify & Continue
-            </AppButton>
+            <AppButton onClick={verifyOtp}>Verify & Continue</AppButton>
 
-            <button className="w-full text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-white transition-colors">
+            <button
+              onClick={sendOtp}
+              className="w-full text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-white"
+            >
               Resend OTP
             </button>
           </>
